@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Topo from './components/Topo';
+import ListaContatos from './components/ListaContatos';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hellow Word</Text>
       <StatusBar style="auto" />
+      <Topo />
+      <ListaContatos />
     </View>
   );
 }
@@ -13,8 +16,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: '#fdfafa',
+  }
 });
