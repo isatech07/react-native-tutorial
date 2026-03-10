@@ -51,6 +51,23 @@ Atualmente, o mais recomendado é o expo-image, porque ele tem melhor desempenho
 - O que são propriedades de componentes?
 Alterar informações de componentes, para reutilização dele.
 
+- O que são Hooks?
+Funções do React que permitem usar estado e outros recursos em componentes funcionais.
+
+- Onde estão?
+Na biblioteca React.
+Principais exemplos: useState e useEffect.
+
+- Características principais:
+
+Começam com “use”.
+
+Usados em componentes React.
+
+Devem ser chamados no nível principal do componente (não dentro de condições ou loops).
+
+======================
+
 Extra
 
 - Revisão de variavéis e objetos
@@ -60,5 +77,8 @@ Extra
 
 // Como Instalar o React Native com Expo?
 --npx create-expo-app@latest --template
+
+//Instalar qualquer pacote no Node
+npm i ou install
 
 ### Expo

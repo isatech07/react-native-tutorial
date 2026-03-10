@@ -1,7 +1,15 @@
+import { useState, useEffect } from "react"
 import { StyleSheet, View, Text } from "react-native"
 import { Image } from "expo-image"
 
 export default function CardUser({avatar, name, email}){
+
+    const [nome, setNome] = useState("Isabelle")
+
+    useEffect(( ) => { 
+        console.log ("teste")}
+    , [nome])
+
     return (
         <View style={styles.container}>
             <Image 
