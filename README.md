@@ -66,6 +66,33 @@ Usados em componentes React.
 
 Devem ser chamados no nível principal do componente (não dentro de condições ou loops).
 
+- useState & useEffect
+
+🔹 Para que serve e como funciona o useState?
+
+Para que serve:
+Serve para guardar valores que podem mudar dentro do componente (estado).
+
+Como funciona:
+Você define um valor inicial.
+Quando usa a função de atualização (ex: setValor), o valor muda e o React renderiza o componente novamente, atualizando a tela.
+
+👉 Sempre que o estado muda, a interface atualiza.
+
+🔹 Para que serve e como funciona o useEffect?
+
+Para que serve:
+Serve para executar ações depois que o componente renderiza ou quando algum valor muda.
+
+Como funciona:
+Ele recebe uma função (o que vai executar) e um array de dependências (quando vai executar).
+
+Se o array estiver vazio → executa só quando o componente carrega.
+Se tiver uma variável → executa quando ela mudar.
+Se não tiver array → executa toda renderização.
+
+👉 Ele reage às mudanças e executa algo como consequência.
+
 ======================
 
 Extra
