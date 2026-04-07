@@ -93,12 +93,15 @@ Se não tiver array → executa toda renderização.
 
 👉 Ele reage às mudanças e executa algo como consequência.
 
-======================
+- O que é Prop Drilling?
+É uma técnica usada no react, que quando você precisa passar dados (props) de um componente para outro, mesmo que os componentes do meio nem usem esses dados.
+
+==========================================================
 
 Extra
 
 - Revisão de variavéis e objetos
-    - desestrturação de objetos
+- desestrturação de objetos
 
 ## Comandos utéis
 
