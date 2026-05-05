@@ -111,10 +111,13 @@ Funciona passando as propriedades(props) de componente em componente (pai → fi
 
 ==========================================================
 
+- Navegação entre telas 
+
+
 Extra
 
 - Revisão de variavéis e objetos
-- desestrturação de objetos|
+- desestrturação de objetos
 
 ## Comandos utéis
 

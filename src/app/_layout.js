@@ -7,7 +7,7 @@ export default function RootLayout() {
             headerTintColor: "white",            
         }}>
             <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="signup" options={{ headerShown: true, title: "Contato" }} />
+            <Stack.Screen name="signup" options={{ headerShown: false}} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
     );
