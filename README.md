@@ -111,8 +111,40 @@ Funciona passando as propriedades(props) de componente em componente (pai → fi
 
 ==========================================================
 
-- Navegação entre telas 
+- NAVEGAÇÃO
 
+- 1. Quais os padrões de navegação do Expo Router vimos em aula?
+Vimos dois padrões:
+
+Stack (pilha)
+Tabs (abas)
+
+
+- 2. Quais as características de cada um deles?
+
+* Stack:
+As telas são empilhadas uma sobre a outra.
+Ao navegar para uma nova tela, ela é colocada "em cima" da anterior.
+É possível voltar para a tela anterior (como um histórico).
+Muito usado para fluxos como: Login → Home → Detalhes.
+
+* Tabs:
+Exibe uma barra de abas (geralmente na parte de baixo da tela).
+Cada aba mostra uma tela diferente.
+A navegação é feita clicando nas abas, sem "empilhar" telas.
+Muito usado para seções principais do app: Home, Perfil, Configurações.
+
+
+- 3. Posso utilizar apenas um deles ou ambos ao mesmo tempo no projeto?
+
+Pode usar ambos ao mesmo tempo! Inclusive, isso é muito comum na prática.
+Por exemplo:
+Você usa Tabs para as seções principais do app.
+Dentro de uma das abas, você usa um Stack para navegar entre telas de detalhe.
+* Resumo: Tabs organiza as seções do app, Stack organiza o fluxo dentro de cada seção.
+
+
+========================================================================================
 
 Extra
 
