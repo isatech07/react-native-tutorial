@@ -1,47 +1,28 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Tabs } from 'expo-router';
+import { Stack } from "expo-router"
 
-export default function TabLayout() {
-  return (
-    <Tabs screenOptions={{ 
-      tabBarActiveTintColor: '#4c0f52',
-      tabBarInactiveTintColor: 'gray', 
-      tabBarLabelStyle: {
-        fontSize: 10
-      },
-      tabBarIconStyle: {
-        marginBottom: 2,
-        height: 22
-      }
-    }}>
-      <Tabs.Screen
-        name="home"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <FontAwesome size={25} name="home" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="contact"
-        options={{
-          title: 'Contact',
-          tabBarIcon: ({ color }) => <FontAwesome size={21} name="users" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="products"
-        options={{
-          title: 'Produtos',
-          tabBarIcon: ({ color }) => <FontAwesome size={25} name="shopping-cart" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'Perfil',
-          tabBarIcon: ({ color }) => <FontAwesome size={25} name="user" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+export default function RootLayout() {
+    return (
+        <Stack screenOptions={{ 
+            headerStyle: { backgroundColor: "#4c0f52" },
+            headerTintColor: "#fff"
+        }}>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen 
+                name="signup"
+                options={{ 
+                    headerShown: true,
+                    title: "Cadastro", 
+                }} 
+            />
+            <Stack.Screen 
+                name="edit-user"
+                options={{ 
+                    headerShown: true,
+                    title: "Editar Usuário",
+                    presentation: 'modal' 
+                }} 
+            />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+    )
 }

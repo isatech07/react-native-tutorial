@@ -1,38 +1,38 @@
-import { useState, useEffect } from "react"
 import { StyleSheet, View, Text } from "react-native"
 import { Image } from "expo-image"
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import FontAwesome from '@expo/vector-icons/FontAwesome'
+import AntDesign from '@expo/vector-icons/AntDesign'
+import { useUserStore } from "../stores/userStore"
+import { useRouter } from "expo-router"
 
-export default function CardUser({id, avatar, name, email, users, setUsers}){
+export default function CardUser({ id, avatar, name, email }) {
+    const { users, setUsers, setUserToEdit } = useUserStore()
+    const router = useRouter()
 
-const handleDelete = async () => {
-    const response = await fetch(`http://localhost:3333/user/${id}`, { 
-        method: "DELETE"
-    })
-    const data = await response?.json()
-    if(response.ok){
-        console.log("Usuário deletado com sucesso", data)
-        const newUser = users.filter(user => user.id !== id)
-        setUsers(newUser)
-    }else{
-        console.log("Erro ao deletar usuário", data)
+    const handleDelete = async () => {
+        const response = await fetch(`http://localhost:3333/user/${id}`, { 
+            method: "DELETE"
+        })
+        const data = await response?.json()
+        if (response.ok) {
+            console.log("Usuário deletado com sucesso", data)
+            const newUser = users.filter(user => user.id !== id)
+            setUsers(newUser)
+        } else {
+            console.log("Erro ao deletar usuário", data)
+        }
     }
-}
 
     return (
         <View style={styles.container}>
             <Image 
                 style={styles.avatar}
-                //source={require("../../assets/adaptive-icon.png")} // Imagem local, pasta assets
-                source={avatar} // Imagem externa, url
+                source={avatar}
             />
-
             <View style={styles.actions}>
-                <AntDesign name="edit" size={19} color="black" />  
-                <FontAwesome name="trash-o" size={18} color="black" style={styles.trash} onPress={handleDelete} />     
+                <AntDesign name="edit" size={19} color="black" onPress={() => { setUserToEdit({ id, avatar, name, email }); router.push("/edit-user") }} />
+                <FontAwesome name="trash-o" size={18} color="black" style={styles.trash} onPress={handleDelete} />
             </View>
-
             <View>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.email}>{email}</Text>
@@ -42,7 +42,7 @@ const handleDelete = async () => {
 }
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         borderWidth: 1,
         borderColor: "#5c4444",
         borderStyle: "solid",
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         width: "80%",
     },
-    avatar:{
+    avatar: {
         backgroundColor: "#d0eaf1",
         borderRadius: 20, 
         width: 40,

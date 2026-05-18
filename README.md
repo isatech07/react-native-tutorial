@@ -143,6 +143,19 @@ Você usa Tabs para as seções principais do app.
 Dentro de uma das abas, você usa um Stack para navegar entre telas de detalhe.
 * Resumo: Tabs organiza as seções do app, Stack organiza o fluxo dentro de cada seção.
 
+- ZUSTAND Estados Globais
+
+ * O que é?
+Zustand é uma biblioteca que permite criar estados globais no React Native, ou seja, dados que qualquer componente do app consegue acessar diretamente.
+
+* Por que usar?
+Sem ele, eu precisaria ficar passando dados de componente em componente via props, o que chamamos de prop drilling. Com o Zustand, qualquer componente acessa a store diretamente, sem intermediários.
+
+* Como funciona?
+Eu crio uma store — um arquivo central com os dados e as funções que os alteram. Qualquer componente pode importar essa store e usar ou modificar esses dados. Quando algo muda, todos os componentes que usam aquele dado atualizam automaticamente.
+
+* Regra prática?
+Se só um componente precisa do dado, uso useState. Se mais de um precisa, coloco na store.
 
 ========================================================================================
 
