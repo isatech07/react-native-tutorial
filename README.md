@@ -143,6 +143,8 @@ Você usa Tabs para as seções principais do app.
 Dentro de uma das abas, você usa um Stack para navegar entre telas de detalhe.
 * Resumo: Tabs organiza as seções do app, Stack organiza o fluxo dentro de cada seção.
 
+===================================================================================================================
+
 - ZUSTAND Estados Globais
 
  * O que é?
@@ -156,9 +158,93 @@ Eu crio uma store — um arquivo central com os dados e as funções que os alte
 
 * Regra prática?
 Se só um componente precisa do dado, uso useState. Se mais de um precisa, coloco na store.
+-----------------------------------------------------------------------------------------------
+- Qual a diferença de usar estados com Zustand e com useState?
+useState: guarda informações apenas dentro de um componente.
+Zustand: guarda informações que podem ser usadas por vários componentes ao mesmo tempo.
 
-========================================================================================
+* Exemplo:
+Se apenas uma tela usa o dado, useState é suficiente. Se várias telas precisam dele, é melhor usar Zustand.
 
+
+===================================================================================================================
+
+- AsyncStorage (Armazenamento Local)
+
+* O que é?
+O AsyncStorage é uma ferramenta de armazenamento local do React Native que permite salvar dados no dispositivo do usuário.
+
+* Por que usar?
+Para guardar informações que precisam permanecer salvas mesmo após fechar o aplicativo, como token de login, configurações e preferências do usuário.
+
+* Como funciona?
+Os dados são armazenados em formato de chave e valor (key-value). O aplicativo pode salvar, buscar, atualizar ou remover essas informações quando necessário.
+
+* Regra prática?
+Se o dado precisa continuar disponível após fechar o app, uso AsyncStorage. Se só preciso dele enquanto o app está aberto, uso estado (useState ou Zustand).
+---------------------------------------------------------------------------------------------------------
+- Qual a diferença do AsyncStorage para o Zustand ou useState?
+useState e Zustand perdem os dados quando o aplicativo é fechado.
+AsyncStorage salva os dados no celular, então eles continuam lá mesmo depois que o app é fechado.
+
+-Qual formato de valor o AsyncStorage aceita?
+O AsyncStorage salva apenas texto (string).
+Para salvar objetos ou listas, é preciso transformar os dados em JSON antes de salvar e converter de volta ao recuperar.
+===================================================================================================================
+
+- Sistema de Login JWT
+
+* O que é?
+JWT (JSON Web Token) é um padrão de autenticação que permite identificar um usuário por meio de um token gerado pelo servidor.
+
+* Por que usar?
+Para manter o usuário autenticado sem precisar enviar login e senha a cada requisição.
+
+* Como funciona?
+Após o login, o servidor gera um token contendo informações do usuário (Payload) e uma assinatura (Signature). O cliente armazena esse token e o envia nas próximas requisições para comprovar sua identidade.
+
+* As informações do Payload do JWT são secretas?
+Não. Qualquer pessoa que tenha o token pode visualizar os dados do Payload, pois eles são apenas codificados, não criptografados.
+
+* Quem possui um token JWT consegue saber a assinatura ou alterar os dados do token?
+A assinatura pode ser visualizada, mas não pode ser recriada sem a chave secreta do servidor. Os dados do Payload podem ser alterados manualmente, porém a assinatura ficará inválida e o servidor rejeitará o token.
+
+* Regra prática?
+Nunca armazenar informações sensíveis no Payload e sempre validar a assinatura do token no servidor.
+-----------------------------------------------------------------------------------------------------------------
+- As informações do Payload do JWT para quem possui o token são secretas?
+Não. Quem possui o token consegue visualizar as informações do Payload.
+
+- Quem possui um token JWT consegue saber a assinatura ou alterar os dados do token?
+A assinatura pode ser vista, mas não pode ser recriada sem a chave secreta do servidor.
+É possível alterar os dados do token, mas a assinatura ficará inválida e o servidor não aceitará esse token.
+===================================================================================================================
+
+- FlatList vs ScrollView
+
+- Qual a diferença entre uma View, ScrollView e FlatList?
+
+* View
+Serve para organizar componentes na tela.
+Não possui rolagem.
+
+* ScrollView
+Permite rolar a tela.
+Carrega todos os itens de uma vez.
+Melhor para listas pequenas.
+
+* FlatList
+Também permite rolagem.
+Carrega apenas os itens que estão aparecendo na tela.
+Melhor para listas grandes porque é mais rápida e consome menos memória.
+
+- Resumo:
+
+* View: apenas organiza elementos.
+* ScrollView: lista pequena com rolagem.
+* FlatList: lista grande com melhor desempenho.
+
+===================================================================================================================
 Extra
 
 - Revisão de variavéis e objetos
