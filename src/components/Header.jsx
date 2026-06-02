@@ -1,91 +1,57 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native'
-import { useState } from 'react'
-import Button from './Button'
+import { View, Text, StyleSheet } from 'react-native'
+import FontAwesome from '@expo/vector-icons/FontAwesome'
+import { Image } from 'expo-image'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import { useRouter } from 'expo-router'
 import { useUserStore } from '../stores/userStore'
+import { useAuthStore } from '../stores/authStore'
 
-export default function FormSignUp() {
-  const { addUser } = useUserStore()
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [pass, setPass] = useState("")
-  const [avatar, setAvatar] = useState("")
+export default function Header() {
 
-  const handleSubmit = async () => {
-    console.log({name, email, pass, avatar})
-    
-    const response = await fetch("http://localhost:3333/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({name, email, pass, avatar})
-    })
+    const { users } = useUserStore()
+    const { isLogged, user } = useAuthStore()
+    const router = useRouter()
 
-    if (response.ok) {
-      console.log("Usuário cadastrado com sucesso!")
-      const data = await response.json()
-      console.log(data)
-      addUser(data.user)
-    } else {
-      console.log("Erro ao cadastrar usuário")
-    }
-  }
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Cadastro</Text>
-      <View style={styles.form}>
-        <TextInput 
-            style={styles.inputs} 
-            placeholder="Nome"
-            value={name}
-            onChangeText={setName}
-        />
-        <TextInput 
-            style={styles.inputs} 
-            placeholder="Email"
-            value={email}
-            onChangeText={setEmail}
-        />
-        <TextInput 
-            style={styles.inputs} 
-            placeholder="Senha" 
-            secureTextEntry
-            value={pass}
-            onChangeText={setPass}
-        />
-        <TextInput 
-            style={styles.inputs} 
-            placeholder="Avatar" 
-            value={avatar}
-            onChangeText={setAvatar}
-        />
-        <Button title="Cadastrar" onPress={handleSubmit} />
-      </View>
-    </View>
-  )
+    return (
+        <View style={styles.container}>
+            <View style={styles.logoContainer}>
+                {isLogged && user ?
+                    <Image source={{ uri: user.avatar }} style={styles.avatar} />
+                    :
+                    <FontAwesome style={styles.logo} name="users" size={26} color="#59259e" />
+                }
+                <Text style={styles.logotipo}>Logo - Users: {users.length}</Text>
+            </View>
+            <Ionicons name="person-add-outline" size={24} color="white" onPress={() => router.push('/signup')} />
+        </View>
+    )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f7f7f7',
-    alignItems: 'center'
-  },
-  form:{
-    width: "90%",
-    gap: 10
-  },
-  inputs:{
-    borderWidth: 1,
-    borderColor: "#d1d1d1",
-    borderStyle: "solid",
-    borderRadius: 6,
-    padding: 8
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "700",
-    marginBottom: 20
-  }
+const styles = StyleSheet.create({ 
+    container: {
+        flexDirection: "row",
+        backgroundColor: "#000000",
+        width: "100%",
+        height: 46,
+        marginBottom: 16,
+        alignItems: "center",
+        paddingHorizontal: 16,
+        justifyContent: "space-between"
+    },
+    logo: {
+        marginRight: 14
+    },
+    logotipo: {
+        color: "#FFF"
+    },
+    logoContainer: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    avatar: {
+        width: 26,
+        height: 26,
+        borderRadius: 13,
+        marginRight: 14
+    }
 })
